@@ -1,0 +1,15 @@
+# Build outputs
+dist/
+build/
+*.spec
+# Python
+__pycache__/
+*.pyc
+*.pyo
+# Archives
+*.zip
+*.tar
+*.gz
+# OS
+.DS_Store
+Thumbs.db
