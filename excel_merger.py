@@ -274,9 +274,10 @@ class ExcelMergerApp:
                                  state=DISABLED)
         self.merge_btn.pack(side=LEFT, padx=5)
 
-        Button(op_frame, text="导出Excel", command=self.export_excel,
+        self.export_btn = Button(op_frame, text="导出Excel", command=self.export_excel,
                bg="#8e44ad", fg="white", font=("微软雅黑", 11), width=12,
-               state=DISABLED).pack(side=LEFT, padx=5)
+               state=DISABLED)
+        self.export_btn.pack(side=LEFT, padx=5)
 
         self.export_btn_state = DISABLED
 
@@ -491,14 +492,10 @@ class ExcelMergerApp:
 
     def _enable_export(self):
         self.export_btn_state = NORMAL
-        # 重新查找export按钮并启用
-        for w in self.root.winfo_children():
-            if isinstance(w, Frame):
-                for child in w.winfo_children():
-                    if isinstance(child, Frame):
-                        for btn in child.winfo_children():
-                            if isinstance(btn, Button) and btn.cget("text") == "导出Excel":
-                                btn.config(state=NORMAL)
+        if hasattr(self, 'export_btn'):
+            self.export_btn.config(state=NORMAL)
+        if hasattr(self, 'merge_btn'):
+            self.merge_btn.config(state=NORMAL)
 
     # -------------------------------------------------------------------------
     # 导出
